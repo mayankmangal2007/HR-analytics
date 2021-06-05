@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promotion Predictor</title>
+    </head>
+
+    <body>
+
+        <!-- Website Title -->
+    	<div class="container">
+            <h2 class='container-heading'><span class="heading_font">Promotion Predictor</span></h2>
+            <div class='description'>
+    			<p>A Machine Learning Web App, Built with FastAPI, Deployed using Heroku.</p>
+    		</div>
+    	</div>
+
+        <!-- Text Area -->
+    	<div class="ml-container">
+    		<form action="{{ url_for('predict') }}" method="POST">
+                <h3>Number of Trainings, eg. 2</h3>
+                <input id="number_format" type="number" name="no_of_trainings" required='required'><br>
+                
+                <h3>Previous Year Rating, eg. 4</h3>
+                <input id="number_format" type="number" name="previous_year_rating" required='required'><br>
+                
+                <h3>Length of Service (in years), eg. 2</h3>
+                <input id="number_format" type="number" name="length_of_service" required='required'><br>
+                
+                <h3>KPI's met above 80, eg. 2</h3>
+                <input id="number_format" type="number" name="KPIs_met_80" required='required'><br>
+                
+                <h3>Awards Won, eg. 3</h3>
+                <input id="number_format" type="number" name="awards_won" required='required'><br>
+                
+                <h3>Avg Training Score, eg. 3.5</h3>
+                <input id="number_format" type="number" name="avg_training_score" required='required'><br>
+
+                <h3>Age</h3>
+                <input id="number_format" type="number" name="age" required='required'><br>
+                
+                <h3>Department</h3>
+                <select id="department" name="department" required='required'>
+                    <option value="Analytics">Analytics</option>
+                    <option value="Finance">Finance</option>
+                    <option value="HR">HR</option>
+                    <option value="Legal">Legal</option>
+                    <option value="Operations">Operations</option>
+                    <option value="Procurement">Procurement</option>
+                    <option value="R&D">R&D</option>
+                    <option value="Sales & Marketing">Sales & Marketing</option>
+                    <option value="Technology">Technology</option>
+                </select>
+
+                <h3>Education</h3>
+                <select id="education" name="education" required='required'>
+                    <option value="Bachelor's">Bachelor's</option>
+                    <option value="Below Secondary">Below Secondary</option>
+                    <option value="Master's & above">Master's & above</option>
+                </select>
+
+                <h3>Gender</h3>
+                <select id="gender" name="gender" required='required'>
+                    <option value="m">Male</option>
+                    <option value="f">Female</option>
+                </select>
+                
+                <h3>Recruitment Channel</h3>
+                <select id="recruitment_channel" name="recruitment_channel" required='required'>
+                    <option value="referred">Referred</option>
+                    <option value="sourcing">Sourcing</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <h3>Region</h3>
+                <select id="region" name="region" required='required'>
+                    <option value="region_1">Region_1</option>
+                    <option value="region_2">Region_2</option>
+                    <option value="region_3">Region_3</option>
+                    <option value="region_4">Region_4</option>
+                    <option value="region_5">Region_5</option>
+                    <option value="region_6">Region_6</option>
+                    <option value="region_7">Region_7</option>
+                    <option value="region_8">Region_8</option>
+                    <option value="region_9">Region_9</option>
+                    <option value="region_10">Region_10</option>
+                    <option value="region_11">Region_11</option>
+                    <option value="region_12">Region_12</option>
+                    <option value="region_13">Region_13</option>
+                    <option value="region_14">Region_14</option>
+                    <option value="region_15">Region_15</option>
+                    <option value="region_16">Region_16</option>
+                    <option value="region_17">Region_17</option>
+                    <option value="region_18">Region_18</option>
+                    <option value="region_19">Region_19</option>
+                    <option value="region_20">Region_20</option>
+                    <option value="region_21">Region_21</option>
+                    <option value="region_22">Region_22</option>
+                    <option value="region_23">Region_23</option>
+                    <option value="region_24">Region_24</option>
+                    <option value="region_25">Region_25</option>
+                    <option value="region_26">Region_26</option>
+                    <option value="region_27">Region_27</option>
+                    <option value="region_28">Region_28</option>
+                    <option value="region_29">Region_29</option>
+                    <option value="region_30">Region_30</option>
+                    <option value="region_31">Region_31</option>
+                    <option value="region_32">Region_32</option>
+                    <option value="region_33">Region_33</option>
+                    <option value="region_34">Region_34</option>
+                </select><br><br><br><br>
+
+
+                <button id="sub" type="submit">Find result</button>
+                <br>
+        	</form>
+            <br><br>
+            <h3>{{prediction_text}}</h3>
+    	</div>
+
+
+    <style>
+            body {
+                background-color: lightgrey;
+                text-align: center;
+                padding: 10px;
+            }
+
+            #number_format{
+                border-radius: 14px;
+                height: 25px;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            #number_format.hover {
+                background-color: coral;
+            }
+
+            #department{
+                width: 250px;
+                border-radius: 14px;
+                height: 25px;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            #education{
+                width: 250px;
+                border-radius: 14px;
+                height: 25px;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            #gender{
+                width: 250px;
+                border-radius: 14px;
+                height: 25px;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            #region{
+                width: 250px;
+                border-radius: 14px;
+                height: 25px;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            #recruitment_channel{
+                width: 250px;
+                border-radius: 14px;
+                height: 25px;
+                font-size: 20px;
+                text-align: center;
+            }
+            
+    </style>
+    </body>
+</html>
