@@ -19,3 +19,9 @@ Werkzeug==1.0.1
 wincertstore==0.2
 gunicorn
 xgboost
+matplotlib
+catboost
+seaborn
+pandas_profiling
+warnings
+pickle
